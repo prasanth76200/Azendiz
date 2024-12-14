@@ -1,31 +1,34 @@
-const mySql = require('mysql2');
+const mysql = require('mysql2');
 const config = require('../config/config.js');
 
- const connection  = mySql.createConnection(config.db);
-// console.log('connection:', connection);
-// console.log('Frontend URL:', process.env.FRONTEND_URL);
+// Function to create a new connection
+function createConnection() {
+  const connection = mysql.createConnection(config.db);
 
-connection.connect((err) => {
+  connection.connect((err) => {
     if (err) {
       console.error('Error connecting to the database:', err);
-      return;
+      setTimeout(createConnection, 2000); // Retry connection after 2 seconds
+    } else {
+      console.log('Connected to the database');
     }
-    console.log('Connected to the database');
   });
-  
+
+  // Handle connection errors
   connection.on('error', (err) => {
     console.error('Database connection error:', err);
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-      // Reconnect on connection loss
       console.log('Reconnecting to the database...');
-      connection.connect();
+      createConnection(); // Create a new connection on connection loss
     } else {
       throw err;
     }
   });
-  
- module.exports = connection;
 
+  return connection;
+}
 
- 
- 
+// Initialize the connection
+let connection = createConnection();
+
+module.exports = connection;
