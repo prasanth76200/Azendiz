@@ -8,11 +8,11 @@ let PRIVATE_KEY, PUBLIC_KEY; // Declare variables outside the block
 
 try {
     PRIVATE_KEY = fs.readFileSync(
-         'E:/ServerBackend/backendForAzendis/certs/private.key',
+         '/certs/private.key',
         'utf8'
     );
     PUBLIC_KEY = fs.readFileSync(
-         'E:/ServerBackend/backendForAzendis/certs/public.key',
+         '/certs/public.key',
         'utf8'
     );
 } catch (error) {
