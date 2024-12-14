@@ -1,0 +1,11 @@
+{
+    "watch": ["src", "routes", "controllers", "models"], 
+    "ext": "js,json", 
+    "ignore": ["src/public"], 
+    "exec": "node src/server.js", 
+    "delay": "1000", 
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+  
