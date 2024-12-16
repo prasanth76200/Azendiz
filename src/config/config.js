@@ -7,10 +7,10 @@ dotEnv.config();
 
 module.exports = {
   db: {
-    host:'bwbpckti6yh4v5txtagn-mysql.services.clever-cloud.com', // Use environment variable if available
-    user: 'ujuuebryns1gklje',
-    password:  'DDozvRCw1A3OdnVu42kb',
-    database: 'bwbpckti6yh4v5txtagn',
+    host:'103.7.11.29', // Use environment variable if available
+    user: 'root',
+    password:  '@Zend1z@24!@#',
+    database: 'azendiz',
     port: 3306,
     connectionLimit: 10, // Max number of connections in the pool
     waitForConnections: true,
