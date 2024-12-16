@@ -8,6 +8,7 @@ const adminProductDetailsController = require('../controllers/adminProductDetail
 const ImageController = require('../controllers/imageUploads');
 const adminDashboardController = require('../controllers/adminDashbordCounts');
 const productBrand = require('../controllers/adminProductBrand');
+const brandPdf = require('../controllers/brandPdfControllers');
 const router = express.Router();
 
 // Company routes
@@ -33,6 +34,9 @@ router.patch('/api/deleteProductBrandById', productBrand.deleteProductBrandById)
 
 // Admin routes
 router.post('/api/adminlogin', adminController.getAdminLoginFieldController);
+
+// Admin routes
+router.post('/api/brandPdf', brandPdf.uploadPdf);
 
 // Product details routes
 router.get('/api/showProductDetails', adminProductDetailsController.showProductDetails);

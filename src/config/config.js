@@ -7,15 +7,25 @@ dotEnv.config();
 
 module.exports = {
   db: {
-    host:'103.7.11.29', // Use environment variable if available
+
+    host:'localhost', // Use environment variable if available
     user: 'root',
-    password:  '@Zend1z@24!@#',
+    password:  '',
     database: 'azendiz',
     port: 3306,
     connectionLimit: 10, // Max number of connections in the pool
     waitForConnections: true,
     queueLimit: 0,
     connectTimeout: 604800, // Timeout for initial connection
+    // host:'103.7.11.29', // Use environment variable if available
+    // user: 'root',
+    // password:  '@Zend1z@24!@#',
+    // database: 'azendiz',
+    // port: 3306,
+    // connectionLimit: 10, // Max number of connections in the pool
+    // waitForConnections: true,
+    // queueLimit: 0,
+    // connectTimeout: 604800, // Timeout for initial connection
   },
   port: '3000',
 };

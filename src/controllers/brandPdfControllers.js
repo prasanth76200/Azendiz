@@ -1,7 +1,9 @@
-const { upload } = require('../services/brandPdfUploads');  // Use PDF upload service
+const { upload } = require('../middleware/pdfMulter');  // Use PDF upload service
 const { v4: uuidv4 } = require('uuid');
 const brandPdfUploadModel = require('../models/brandsPdfUploads');  // Updated to handle PDFs
 
+
+// brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, createdOn
 // Upload PDF Controller
 const uploadPdf = async (req, res) => {
   try {
@@ -18,25 +20,25 @@ const uploadPdf = async (req, res) => {
       return;
     }
 
-    const { product_id, created_by } = req.body;
+    const { brand_pdf_name, created_by } = req.body;
 
     // Validate required fields
-    if (!product_id || !created_by) {
+    if (!brand_pdf_name || !created_by) {
       res.status(400).json({ message: 'Missing required fields' });
       return;
     }
 
     // Prepare data for DB
     const currentDate = new Date().toISOString().replace('T', ' ').substring(0, 19);
-    const pdf_id = uuidv4();
-    const pdf_name = req.file.originalname;
+    const brand_pdf_id = uuidv4();
+    // const brand_pdf_name = req.file.originalname;
     const pdf_path_name = req.file.path;
     const created_on = currentDate;
 
     // Save PDF details to the database
     await brandPdfUploadModel.uploadBrandPdfModel(
-      pdf_id,
-      pdf_name,
+      brand_pdf_id,
+      brand_pdf_name,
       pdf_path_name,
       created_by,
       created_on

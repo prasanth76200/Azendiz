@@ -3,11 +3,11 @@ const path = require('path');
 
 
 
-const uploadBrandPdfModel =(brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, createdOn)=>{
+const uploadBrandPdfModel =(brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, created_on)=>{
 return new Promise((resolve,reject)=>{
-    const query =`INSERT INTO brand_pdf (brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, createdOn)
+    const query =`INSERT INTO brand_pdf (brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, created_on)
          VALUES (?, ?, ?, ?, ?)`;
-    db.query(query, [brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, createdOn],(error,result)=>{
+    db.query(query, [brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, created_on],(error,result)=>{
         if(error) return reject(error);
         resolve(result);
     })

@@ -32,6 +32,7 @@ const showImagesById = (product_id) => {
             const response = result.map(item => ({
                 image_id: item.image_id,
                 image_name: item.image_name,
+                image_path_name:item.image_path_name,
                 image_url: `/uploads/${path.basename(item.image_path_name)}`,
                 product_description: item.product_description
             }));
