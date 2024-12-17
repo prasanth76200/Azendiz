@@ -36,7 +36,11 @@ router.patch('/api/deleteProductBrandById', productBrand.deleteProductBrandById)
 router.post('/api/adminlogin', adminController.getAdminLoginFieldController);
 
 // Admin routes
-router.post('/api/brandPdf', brandPdf.uploadPdf);
+router.post('/api/UploadBrandPdf', brandPdf.uploadPdf);
+router.get('/api/showBrandPdf', brandPdf.showAllPdfDetails);
+// router.patch('/api/editBrandPdf', brandPdf.editPdf);
+router.post('/api/deleteBrandPdf', brandPdf.deletePdfId);
+
 
 // Product details routes
 router.get('/api/showProductDetails', adminProductDetailsController.showProductDetails);

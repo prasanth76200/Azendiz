@@ -24,12 +24,16 @@
   "scripts": {
     "seed": "node scripts/seed.js",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+     "pm2:start": "pm2 start src/server.js --name backendforazendiz",
+     "pm2:restart": "pm2 restart backendforazendiz",
+     "pm2:stop": "pm2 stop backendforazendiz",
+      "pm2:delete": "pm2 delete backendforazendiz"
   },
   "author": "azendiz",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.9"
   }
 }

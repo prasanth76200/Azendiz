@@ -21,6 +21,7 @@ app.use(cors(corsOptions));
 
 // Serve static files
 app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
+app.use('/brandPdfs', express.static(path.resolve(__dirname, '../brandPdfs')));
 
 
 

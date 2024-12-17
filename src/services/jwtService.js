@@ -20,7 +20,7 @@ try {
     process.exit(1); // Exit the process if keys cannot be loaded
 }
 
-const EXPIRATION_TIME = process.env.EXPIRATION_TIME || '1h';
+const EXPIRATION_TIME =  '7d';
 
 /**
  * Generate a JWT token using RS256 with role-based authorization
