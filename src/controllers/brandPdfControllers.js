@@ -1,7 +1,7 @@
 const { upload } = require('../middleware/pdfMulter');  // Use PDF upload service
 const { v4: uuidv4 } = require('uuid');
 const brandPdfUploadModel = require('../models/brandsPdfUploads');  // Updated to handle PDFs
-
+const cloudinary = require("../config/CloudnaryConfig");
 
 // brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, createdOn
 // Upload PDF Controller
@@ -34,12 +34,17 @@ const uploadPdf = async (req, res) => {
     // const brand_pdf_name = req.file.originalname;
     const pdf_path_name = req.file.path;
     const created_on = currentDate;
-
+ // Upload the image to Cloudinary (no need to store it locally)
+    const cloudinaryResult = await cloudinary.uploader.upload(req.file.path, {
+      public_id: `brandpdf/${brand_pdf_id}`, // Unique public ID for Cloudinary
+      folder: 'brandpdf/', // Optional: Organize into folders in Cloudinary
+      resource_type: 'auto', // Automatically determine the file type (image, video, etc.)
+    });
     // Save PDF details to the database
     await brandPdfUploadModel.uploadBrandPdfModel(
       brand_pdf_id,
       brand_pdf_name,
-      pdf_path_name,
+      cloudinaryResult.secure_url,
       created_by,
       created_on
     );
