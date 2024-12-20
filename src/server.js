@@ -1,9 +1,8 @@
 const app = require('./app');
-const config = require('./config/config');
 require('dotenv').config();
 
-// Set the port dynamically or fallback to 9000
-const port = 9000;
+// Set the port dynamically (Render sets the PORT environment variable)
+const port = process.env.PORT || 9000;
 
 // Start the server
 app.listen(port, () => {
