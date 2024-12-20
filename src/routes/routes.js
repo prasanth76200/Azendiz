@@ -53,5 +53,8 @@ router.post('/api/editImage', ImageController.editImage);
 
 // Dashboard routes
 router.get('/api/getCompainesCount', adminDashboardController.showCompanyCounts);
+router.get('/api/getProductsCount', adminDashboardController.showProductsCount);
+router.get('/api/getCatagoriesCount', adminDashboardController.showCatagoriesCounts);
+router.get('/api/getBrandCount', adminDashboardController.showBrandCounts);
 
 module.exports = router;
