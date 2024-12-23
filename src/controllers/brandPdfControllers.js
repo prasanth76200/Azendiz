@@ -20,10 +20,10 @@ const uploadPdf = async (req, res) => {
       return;
     }
 
-    const { brand_pdf_name, created_by } = req.body;
+    const { brand_pdf_name,brand_id, created_by } = req.body;
 
     // Validate required fields
-    if (!brand_pdf_name || !created_by) {
+    if (!brand_pdf_name || !created_by ||!brand_id) {
       res.status(400).json({ message: 'Missing required fields' });
       return;
     }
@@ -45,6 +45,7 @@ const uploadPdf = async (req, res) => {
       brand_pdf_id,
       brand_pdf_name,
       cloudinaryResult.secure_url,
+      brand_id,
       created_by,
       created_on
     );

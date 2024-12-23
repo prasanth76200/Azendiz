@@ -4,11 +4,21 @@ const path = require('path');
 const showPdfDetails= () => {
     return new Promise((resolve, reject) => {
         const query = `SELECT 
-                brand_pdf_id, 
-                brand_pdf_name,
-                brand_pdf_path
-               FROM brand_pdf
-               WHERE is_deleted = 0`;
+    bl.brand_name,
+    bl.brand_id,
+    bp.brand_pdf_id,
+    bp.brand_pdf_name,
+    bp.brand_pdf_path
+FROM 
+    brand_list bl
+JOIN 
+    brand_pdf bp 
+ON 
+    bl.brand_id = bp.brand_id
+WHERE 
+    bp.is_deleted = 0 
+    AND bl.is_deleted = 0;
+`;
 
 
          db.query(query, (error, result) => {
@@ -16,6 +26,8 @@ const showPdfDetails= () => {
 
 
             const response = result.map(item => ({
+                brand_name :item.brand_name,
+                brand_id :  item.brand_id,
                 brand_pdf_id: item. brand_pdf_id,
                 brand_pdf_name: item.brand_pdf_name,
                 brand_pdf_path:item.brand_pdf_path,
@@ -26,11 +38,11 @@ const showPdfDetails= () => {
     });
 };
 
-const uploadBrandPdfModel =(brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, created_on)=>{
+const uploadBrandPdfModel =(brand_pdf_id, brand_pdf_name,brand_pdf_path,brand_id, created_by, created_on)=>{
 return new Promise((resolve,reject)=>{
-    const query =`INSERT INTO brand_pdf (brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, created_on)
-         VALUES (?, ?, ?, ?, ?)`;
-    db.query(query, [brand_pdf_id, brand_pdf_name,brand_pdf_path, created_by, created_on],(error,result)=>{
+    const query =`INSERT INTO brand_pdf (brand_pdf_id, brand_pdf_name,brand_pdf_path,brand_id,created_by, created_on)
+         VALUES (?, ?, ?, ?, ?,?)`;
+    db.query(query, [brand_pdf_id, brand_pdf_name,brand_pdf_path,brand_id, created_by, created_on],(error,result)=>{
         if(error) return reject(error);
         resolve(result);
     })
