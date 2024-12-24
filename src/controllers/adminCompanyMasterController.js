@@ -2,12 +2,35 @@ const adminCompanyMasterService = require('../services/adminCompanyMasterService
 const adminCompanyMasterModel = require('../models/adminCompanyMasterModel');
 
 const { v4: uuidv4 } = require('uuid');
+const fastJson = require('fast-json-stringify');
 
+const stringify = fastJson({
+    title: 'Companies',
+    type: 'object',
+    properties: {
+        companies: {
+            type: 'array',
+            items: {
+                type: 'object',
+                properties: {
+                    company_id: { type: 'string' },
+                    company_name: { type: 'string' },
+                    company_address:{type: 'string'},
+                    country:{type: 'string'},
+                    postal_code:{type: 'string'},
+                    company_username:{type: 'string'},
+                    company_password:{type: 'string'}
+                  
+                }
+            }
+        }
+    }
+});
 const getAllCompanies = async (req, res) => {
     try {
         const companies = await adminCompanyMasterService.getAllCompanies();
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ companies }));
+        return res.end(stringify({ companies }));
         
     } catch (error) {
         console.error('Error in getAllCompanies:', error);

@@ -7,7 +7,7 @@ const routes = require('./routes/routes');
 dotEnv.config();
 
 const app = express();
-
+const compression = require('compression');
 // CORS configuration
 const corsOptions = {
   origin: ['https://apps.azendiz.com','http://localhost:4200'],  // Allow only this origin
@@ -18,7 +18,7 @@ const corsOptions = {
 
 // Apply CORS middleware
 app.use(cors(corsOptions));
-
+app.use(compression());
 // Serve static files
 app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 app.use('/brandPdfs', express.static(path.resolve(__dirname, '../brandPdfs')));
