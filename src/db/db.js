@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const config = require('../config/config.js');
+const config = require('../config/config');
 
 // Function to create and handle database connections
 function handleDisconnect() {
